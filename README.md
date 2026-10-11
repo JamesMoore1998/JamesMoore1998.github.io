@@ -60,7 +60,7 @@ Add a Markdown file under `src/content/contributions/`. Its frontmatter is valid
 
 ## Update profile and navigation
 
-Edit `src/data/profile.ts` to update the name, current role, institution, research group, expected graduation, professional email, and verified GitHub profile. The same file defines the shared navigation. Do not add a personal phone number, address, or unverified social links.
+Edit `src/data/profile.ts` to update the name, current role, institution, research group, expected graduation, professional email, and verified GitHub and LinkedIn profiles. The same file defines the shared navigation and profile links used in structured metadata. The professional portrait on the About page is `public/images/james-moore-headshot.jpg`. Do not add a personal phone number, address, or unverified social links.
 
 ## Update the CV
 

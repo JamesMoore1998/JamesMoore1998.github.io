@@ -7,6 +7,7 @@ export const profile = {
   expectedGraduation: 'Spring 2030',
   site: 'https://jamesmoore1998.github.io',
   github: 'https://github.com/JamesMoore1998',
+  linkedin: 'https://www.linkedin.com/in/james-moore-6b5338333/',
   headline: 'Biochemistry, synthetic biology & computational biology',
   introduction:
     'I study biological systems by bringing together experimental biology, molecular methods, and quantitative reasoning. My research interests center on microbial natural products, biosynthetic gene clusters, and the tools that make biological research more reproducible.',

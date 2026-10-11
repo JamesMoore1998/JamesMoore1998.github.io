@@ -12,7 +12,7 @@ import { profile } from '../data/profile';
     <SectionIntro
       eyebrow="Contact"
       title="Let’s talk science."
-      intro="For research, collaboration, or professional inquiries, please use my institutional email or connect through GitHub."
+      intro="For research, collaboration, or professional inquiries, please use my institutional email or connect through GitHub or LinkedIn."
     />
     <a class="contact-link-panel" href={`mailto:${profile.email}`}>
       <span class="contact-link-label">Professional email</span>
@@ -22,6 +22,11 @@ import { profile } from '../data/profile';
     <a class="contact-link-panel" href={profile.github} rel="me">
       <span class="contact-link-label">GitHub profile</span>
       <span class="contact-link-value">github.com/JamesMoore1998</span>
+      <span class="contact-link-arrow" aria-hidden="true">↗</span>
+    </a>
+    <a class="contact-link-panel" href={profile.linkedin} rel="me">
+      <span class="contact-link-label">LinkedIn profile</span>
+      <span class="contact-link-value">linkedin.com/in/james-moore-6b5338333</span>
       <span class="contact-link-arrow" aria-hidden="true">↗</span>
     </a>
     <p class="contact-note">This independent portfolio is not an official University of Nevada, Reno or Murray Lab website.</p>
