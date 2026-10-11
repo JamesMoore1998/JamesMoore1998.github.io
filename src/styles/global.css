@@ -267,8 +267,11 @@ dd { margin: 0; color: var(--ink); font-size: 12px; font-weight: 500; }
 .cv-date { margin: 2px 0 0; color: var(--muted); font-size: 10px; font-variant-numeric: tabular-nums; }
 .cv-entry h3 { margin: 0 0 2px; font: 500 18px/1.25 var(--serif); }
 .cv-entry-role { margin: 0; color: var(--green); font-size: 11px; font-weight: 600; }
-.cv-lead { max-width: 34em; margin: 24px 0 0; color: var(--ink-soft); font: 400 clamp(17.6px, 2.5vw, 19.52px)/1.5 var(--serif); }
+.cv-lead { max-width: 34em; margin: 24px 0 0; padding-left: 16px; border-left: 3px solid var(--rust); color: var(--ink-soft); font: 400 clamp(17.6px, 2.5vw, 19.52px)/1.5 var(--serif); }
+.cv-lead-heading { display: block; margin-bottom: 4px; color: var(--ink); font-size: 1.2em; line-height: 1.25; }
 .cv-lead em { color: var(--green); }
+.cv-placeholder-note { margin: 5px 0 0; color: var(--rust); font-size: 10px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.cv-placeholder-points { color: var(--muted); font-style: italic; }
 .cv-note { margin: 4px 0 0; color: var(--muted); font-size: 10px; line-height: 1.65; }
 .cv-points { margin: 7px 0 0; padding-left: 17px; color: var(--ink-soft); font-size: 10px; line-height: 1.65; }
 .cv-points li { margin: 0 0 3px; }

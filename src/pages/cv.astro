@@ -25,6 +25,17 @@ const education = [
 
 const experience = [
   {
+    dates: '[DATES]',
+    institution: 'LAWRENCE BERKELEY NATIONAL LABORATORY — DOE JOINT GENOME INSTITUTE',
+    role: '[EXACT JGI TITLE]',
+    placeholder: true,
+    points: [
+      '[Describe specific genomics, metagenomics, or sequence-analysis work and your contribution.]',
+      '[Describe bioinformatics, annotation, pipeline, or data-analysis work; list only confirmed tools.]',
+      '[Describe experimental or molecular work, or DOE/JGI datasets/resources used, if applicable.]',
+    ],
+  },
+  {
     dates: '2025–present',
     institution: 'Desert Research Institute & University of Nevada, Reno',
     role: 'Graduate Research Assistant · Murray Lab',
@@ -111,7 +122,8 @@ const skillGroups = [
         <li><span>Web</span><a href={profile.site}>jamesmoore1998.github.io</a></li>
       </ul>
       <p class="cv-lead">
-        <em>Palmerolide A</em> has a blueprint but no factory. The bacterium that assembles it has
+        <span class="cv-lead-heading"><em>Palmerolide A</em> has a blueprint but no factory.</span>
+        The bacterium that assembles it has
         never been grown in a lab, so the pathway reaches us only as sequence pulled from the metagenome
         of an Antarctic sea squirt. My thesis rebuilds it in a bacterium I can actually culture.
       </p>
@@ -139,7 +151,10 @@ const skillGroups = [
           <div>
             <h3>{entry.institution}</h3>
             <p class="cv-entry-role">{entry.role}</p>
-            <ul class="cv-points">{entry.points.map((point) => <li>{point}</li>)}</ul>
+            {entry.placeholder && <p class="cv-placeholder-note">Position details to confirm</p>}
+            <ul class:list={['cv-points', entry.placeholder && 'cv-placeholder-points']}>
+              {entry.points.map((point) => <li>{point}</li>)}
+            </ul>
           </div>
         </article>
       ))}
