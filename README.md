@@ -77,3 +77,16 @@ Update the `navigation` array in `src/data/profile.ts` and create or remove the 
 ## Content and privacy
 
 This site is an independent personal portfolio, not an official institutional website. Project summaries distinguish ongoing work from results. Do not publish protected protocols, internal documents, private data, or unsupported claims. Add only verified professional contact details, publications, and external links.
+
+## Wildlife sprites
+
+The header sage grouse and footer pronghorn reuse the original artwork and animation timing from `unr-grad-community`. Assets live in `public/sprites/`, animation styles in `src/styles/wildlife.css`, and behavior in `public/scripts/wildlife.js`. Reduced motion shows the settled grouse and hides the runner; print layouts omit both.
+
+Use the project-specific Miniforge environment for local commands:
+
+```sh
+conda env create --prefix ./.conda --file environment.yml
+conda activate ./.conda
+npm run check
+npm run build
+```

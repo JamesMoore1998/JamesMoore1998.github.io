@@ -1,0 +1,172 @@
+.sage-grouse-scene {
+  position: relative;
+  width: 60px;
+  height: 64px;
+  pointer-events: none;
+}
+
+.sage-grouse-scene__emerge {
+  width: 100%;
+  height: 100%;
+  background-image: url("/sprites/sage-grouse/sage-grouse-emerge.png");
+  background-repeat: no-repeat;
+  /* 8 frames at 60px display width each = 480px background width. */
+  background-size: 480px 64px;
+  background-position: 0 0;
+  image-rendering: pixelated;
+}
+
+.wildlife-ready .sage-grouse-scene.is-visible .sage-grouse-scene__emerge {
+  /* Plays the 8-frame hidden -> peek -> emerging -> fully displayed
+     sequence once (bush stays in the same place the whole time) and holds
+     on the last frame, then layers a subtle infinite breathing pulse on
+     top (a separate CSS property, so it doesn't interfere with the
+     frame-stepping animation above it). */
+  animation:
+    grouse-emerge-steps 2.4s steps(7) forwards,
+    grouse-idle-pulse 4.5s ease-in-out infinite 2.6s;
+}
+
+@keyframes grouse-emerge-steps {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    /* -(8-1)*60px */
+    background-position-x: -420px;
+  }
+}
+
+@keyframes grouse-idle-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wildlife-ready .sage-grouse-scene.is-visible .sage-grouse-scene__emerge {
+    animation: none;
+    background-position-x: -420px;
+  }
+}
+
+/* Pronghorn runner: an in-flow banner strip at the actual bottom of the
+   page (not a fixed viewport overlay) - it only becomes visible once a
+   visitor scrolls down to it, same as any other page content. Uses a
+   cropped landscape illustration (banner-landscape.png, the scene band
+   cropped out of the wider reference image - see
+   assets/sprites/pronghorn/README.md) as its background. Hidden without
+   JS (nothing would move the pronghorn) and under reduced motion (see
+   media query below). Shown at every viewport width, including mobile -
+   the background-image assets were already being downloaded there
+   regardless of visibility, so hiding it bought no bandwidth savings,
+   only a smaller/less-crowded appearance that turned out not to be
+   wanted. The banner is stretched to its own full width at a fixed
+   height, so it isn't pixel-perfect at every viewport width - a
+   deliberate simplicity tradeoff over e.g. a
+   viewport-width-based aspect-ratio (which also has a real rendering bug
+   with background-image sizing in at least one browser engine we tested
+   against - see git history if revisiting this). Present on every page
+   (index/events/resources/about) - this repo has no shared template
+   layer, so the markup is duplicated identically on each page; keep them
+   in sync if you change this. */
+.pronghorn-runner {
+  display: none;
+  position: relative;
+  width: 100%;
+  height: 110px;
+  overflow: hidden;
+  pointer-events: none;
+  background-image: url("/sprites/pronghorn/banner-landscape.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.wildlife-ready .pronghorn-runner {
+  display: block;
+}
+
+.pronghorn-runner__pos {
+  position: absolute;
+  bottom: 18px;
+  left: 0;
+  transform: translateX(-90px);
+  transition: transform linear;
+  will-change: transform;
+}
+
+.pronghorn-runner__run {
+  width: 70px;
+  height: 61px;
+  background-image: url("/sprites/pronghorn/pronghorn-run.png");
+  background-repeat: no-repeat;
+  /* 8 frames at 70px display width each = 560px background width. */
+  background-size: 560px 61px;
+  image-rendering: pixelated;
+  animation: pronghorn-run-steps 0.9s steps(7) infinite;
+}
+
+.pronghorn-runner__graze {
+  width: 70px;
+  height: 64px;
+  background-image: url("/sprites/pronghorn/pronghorn-graze.png");
+  background-repeat: no-repeat;
+  /* 5 frames at 70px display width each = 350px background width. */
+  background-size: 350px 64px;
+  image-rendering: pixelated;
+  display: none;
+}
+
+.pronghorn-runner__pos.is-grazing .pronghorn-runner__run {
+  display: none;
+}
+
+.pronghorn-runner__pos.is-grazing .pronghorn-runner__graze {
+  display: block;
+  /* Plays the 5-frame stop -> lower-head -> graze -> raise-head -> stop
+     cycle once per graze pause and holds on the last (standing) frame;
+     restarts naturally each time this element toggles back from
+     display: none, so it needs no JS beyond the is-grazing class toggle
+     already driving initPronghorn()'s pauses. */
+  animation: pronghorn-graze-steps 1.8s steps(4) forwards;
+}
+
+@keyframes pronghorn-run-steps {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    /* -(8-1)*70px */
+    background-position-x: -490px;
+  }
+}
+
+@keyframes pronghorn-graze-steps {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    /* -(5-1)*70px */
+    background-position-x: -280px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wildlife-ready .pronghorn-runner {
+    display: none;
+  }
+}
+
+@media print { .sage-grouse-scene, .pronghorn-runner { display: none !important; } }
+
+/* Keep the decorative header scene from squeezing navigation. */
+.sage-grouse-scene { flex-shrink: 0; }
+@media (min-width: 641px) and (max-width: 1000px) {
+  .header-inner { flex-wrap: wrap; gap: 0 18px; padding-block: 8px; }
+  .header-inner .sage-grouse-scene { order: 1; }
+  .header-inner .desktop-nav { order: 2; width: 100%; justify-content: space-between; gap: 12px; padding-bottom: 8px; }
+}

@@ -1,0 +1,7 @@
+name: james-moore-portfolio
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - nodejs=22
