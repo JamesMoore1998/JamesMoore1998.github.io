@@ -3,7 +3,6 @@ import { profile } from '../data/profile';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import '../styles/global.css';
-import '../styles/wildlife.css';
 
 interface Props {
   title: string;
@@ -52,12 +51,5 @@ const person = {
       <slot />
     </main>
     <SiteFooter />
-    <div class="pronghorn-runner" aria-hidden="true">
-      <div class="pronghorn-runner__pos">
-        <div class="pronghorn-runner__run"></div>
-        <div class="pronghorn-runner__graze"></div>
-      </div>
-    </div>
-    <script is:inline src="/scripts/wildlife.js"></script>
   </body>
 </html>
