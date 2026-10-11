@@ -28,11 +28,6 @@ const experience = [
     dates: '2025–present',
     institution: 'Desert Research Institute & University of Nevada, Reno',
     role: 'Graduate Research Assistant · Murray Lab',
-    spotlight: {
-      heading: 'Palmerolide A has a blueprint but no factory.',
-      description:
-        'The bacterium that assembles it has never been grown in a lab, so the pathway is known from sequence recovered from the metagenome of an Antarctic sea squirt. My thesis aims to rebuild it in a bacterium I can culture, using Cre-lox recombineering.',
-    },
     points: [
       'Analyzing metagenomically recovered biosynthetic gene clusters associated with the uncultured symbiont Candidatus Synoicihabitans palmerolidicus.',
       'Using HMM searches, phylogenetic placement, and synteny analysis to survey the acyl-CoA dehydrogenase superfamily and inform host-selection research.',
@@ -116,6 +111,17 @@ const skillGroups = [
       </ul>
     </header>
 
+    <section class="cv-spotlight-section" aria-labelledby="palmerolide-spotlight">
+      <div class="cv-spotlight">
+        <h2 id="palmerolide-spotlight">Palmerolide A has a blueprint but no factory.</h2>
+        <p>
+          The bacterium that assembles it has never been grown in a lab, so the pathway is known from
+          sequence recovered from the metagenome of an Antarctic sea squirt. My thesis aims to rebuild
+          it in a bacterium I can culture, using Cre-lox recombineering.
+        </p>
+      </div>
+    </section>
+
     <section class="cv-section" aria-labelledby="cv-education">
       <h2 id="cv-education">Education</h2>
       {education.map((entry) => (
@@ -138,12 +144,6 @@ const skillGroups = [
           <div>
             <h3>{entry.institution}</h3>
             <p class="cv-entry-role">{entry.role}</p>
-            {entry.spotlight && (
-              <div class="cv-spotlight">
-                <h4>{entry.spotlight.heading}</h4>
-                <p>{entry.spotlight.description}</p>
-              </div>
-            )}
             <ul class="cv-points">{entry.points.map((point) => <li>{point}</li>)}</ul>
           </div>
         </article>
