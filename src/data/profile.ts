@@ -1,8 +1,9 @@
 export const profile = {
   name: 'James Moore',
-  role: 'Ph.D. student in Biochemistry',
+  role: 'Ph.D. candidate in Biochemistry & Molecular Biology',
   institution: 'University of Nevada, Reno',
-  affiliation: 'Murray Lab',
+  affiliation: 'Murray Lab, Desert Research Institute',
+  email: 'James.Moore@DRI.edu',
   expectedGraduation: 'Spring 2030',
   site: 'https://jamesmoore1998.github.io',
   github: 'https://github.com/JamesMoore1998',
@@ -17,5 +18,6 @@ export const navigation = [
   { label: 'Projects', href: '/projects/' },
   { label: 'Skills', href: '/skills/' },
   { label: 'Publications', href: '/contributions/' },
+  { label: 'CV', href: '/cv/' },
   { label: 'Contact', href: '/contact/' },
 ] as const;

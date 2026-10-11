@@ -60,11 +60,11 @@ Add a Markdown file under `src/content/contributions/`. Its frontmatter is valid
 
 ## Update profile and navigation
 
-Edit `src/data/profile.ts` to update the name, current role, institution, research group, expected graduation, and verified GitHub profile. The same file defines the shared navigation. Personal email, phone, and unverified social links are deliberately omitted.
+Edit `src/data/profile.ts` to update the name, current role, institution, research group, expected graduation, professional email, and verified GitHub profile. The same file defines the shared navigation. Do not add a personal phone number, address, or unverified social links.
 
-## Add a CV
+## Update the CV
 
-The CV page and download link are intentionally not published until you provide an approved CV. When ready, place the PDF in `public/cv/`, record its actual path and updated date in the profile configuration, and add a page with a download link (plus an optional embedded preview). No placeholder CV is included.
+Edit the verified entries in `src/pages/cv.astro`. The page includes a **Print / Save as PDF** control; use the browser's print dialog and choose **Save as PDF** to create a downloadable copy. Update the displayed month/year when the CV changes. Do not add private contact details or describe planned events as completed.
 
 ## Add figures
 
@@ -76,4 +76,4 @@ Update the `navigation` array in `src/data/profile.ts` and create or remove the 
 
 ## Content and privacy
 
-This site is an independent personal portfolio, not an official institutional website. Project summaries distinguish ongoing work from results. Do not publish protected protocols, internal documents, private data, or unsupported claims. Missing CV, email, publications, and social links remain absent rather than appearing as public placeholders.
+This site is an independent personal portfolio, not an official institutional website. Project summaries distinguish ongoing work from results. Do not publish protected protocols, internal documents, private data, or unsupported claims. Add only verified professional contact details, publications, and external links.

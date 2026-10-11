@@ -1,0 +1,190 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { profile } from '../data/profile';
+
+const education = [
+  {
+    dates: '2025–present',
+    institution: 'University of Nevada, Reno',
+    degree: 'Ph.D., Biochemistry & Molecular Biology',
+    note: 'Expected graduation: Spring 2030',
+  },
+  {
+    dates: '2021–2023',
+    institution: 'University of Massachusetts, Amherst',
+    degree: 'M.S., Chemical Engineering',
+    note: 'Thesis: Engineering Escherichia coli Nissle 1917 to Enable Functional Genomic Interrogation using CRISPRi',
+  },
+  {
+    dates: '2016–2021',
+    institution: 'Humboldt State University (now Cal Poly Humboldt)',
+    degree: 'B.S., Botany and Biochemistry; minor in Applied Mathematics',
+    note: '',
+  },
+];
+
+const experience = [
+  {
+    dates: '2025–present',
+    institution: 'Desert Research Institute & University of Nevada, Reno',
+    role: 'Graduate Research Assistant · Murray Lab',
+    points: [
+      'Developing a Cre-lox recombineering platform to investigate heterologous expression of the palmerolide A biosynthetic gene cluster in Aeromonas salmonicida subsp. pectinolytica 34mel.',
+      'Analyzing metagenomically recovered biosynthetic gene clusters associated with the uncultured symbiont Candidatus Synoicihabitans palmerolidicus.',
+      'Using HMM searches, phylogenetic placement, and synteny analysis to survey the acyl-CoA dehydrogenase superfamily and inform host-selection research.',
+      'Curated a literature database and keyword-scoring workflow focused on heterologous expression of bacterial secondary metabolites.',
+    ],
+  },
+  {
+    dates: '2021–2023',
+    institution: 'University of Massachusetts, Amherst',
+    role: 'Graduate Research Assistant',
+    points: [
+      'Developed a CRISPRi platform in Escherichia coli Nissle 1917 for functional-genomic investigation.',
+      'Integrated constructs at three genomic loci using lambda-Red recombineering.',
+      'Compared promoter activity across genomic loci using eYFP reporters and flow cytometry.',
+    ],
+  },
+  {
+    dates: '2017–2020',
+    institution: 'Humboldt State University',
+    role: 'Undergraduate Researcher',
+    points: [
+      'Extracted and partitioned myxobacterial secondary metabolites using a Kupchan solvent scheme.',
+      'Developed visualization methods for trace-metal datasets from GEOTRACES cruises; work published in IdeaFest.',
+      'Applied density functional theory to hydrogen bonding in silicon-substituted nucleobases; work published in the Journal of Undergraduate Chemistry Research.',
+    ],
+  },
+  {
+    dates: '2019–2020',
+    institution: 'Humboldt State University',
+    role: 'Teaching Assistant · Biochemistry Laboratory',
+    points: [
+      'Co-directed an undergraduate laboratory section, providing bench instruction and technique demonstrations.',
+    ],
+  },
+];
+
+const awards = [
+  { year: '2025', name: 'Dean’s Fellowship, University of Nevada, Reno' },
+  { year: '2021', name: 'Dennis Walker Botany Award' },
+  { year: '2019', name: 'Presidential Scholar, Humboldt State University' },
+  { year: '2018', name: 'Roger Weiss Chemistry Scholarship' },
+];
+
+const skillGroups = [
+  {
+    title: 'Genomics & bioinformatics',
+    skills: 'Gene-cluster mining and genome annotation (antiSMASH, MetaErg); metagenome analysis; HMM profile search; phylogenetic placement; synteny analysis',
+  },
+  {
+    title: 'Programming & data',
+    skills: 'Python, R, C++, Bash; relational schema design; ImageJ macro development',
+  },
+  {
+    title: 'Molecular biology',
+    skills: 'Cre-lox and lambda-Red recombineering; large-construct and multipart assembly design; DNA preparation; PCR; microbial cultivation',
+  },
+  {
+    title: 'Analytical methods',
+    skills: 'Chromatography (GC-MS, HPLC, SEC, TLC); spectroscopy (UV–Vis–NIR, FTIR, NMR); microscopy (SEM/EDS, confocal); flow cytometry',
+  },
+];
+---
+
+<BaseLayout
+  title="Curriculum vitae"
+  description="Curriculum vitae of James Moore, Ph.D. candidate in Biochemistry and Molecular Biology at the University of Nevada, Reno."
+>
+  <div class="page-shell cv-page">
+    <div class="cv-actions">
+      <p class="eyebrow">Curriculum vitae · Updated October 2026</p>
+      <button class="button button-primary print-button" type="button" id="print-cv">Print / Save as PDF <span aria-hidden="true">↓</span></button>
+    </div>
+    <header class="cv-masthead">
+      <h1>{profile.name}</h1>
+      <p class="cv-role">{profile.role}</p>
+      <p class="cv-affiliation">{profile.affiliation} · {profile.institution}</p>
+      <ul class="cv-contact" aria-label="Professional links">
+        <li><span>Email</span><a href={`mailto:${profile.email}`}>{profile.email}</a></li>
+        <li><span>GitHub</span><a href={profile.github}>JamesMoore1998</a></li>
+        <li><span>Web</span><a href={profile.site}>jamesmoore1998.github.io</a></li>
+      </ul>
+    </header>
+
+    <section class="cv-section" aria-labelledby="cv-education">
+      <h2 id="cv-education">Education</h2>
+      {education.map((entry) => (
+        <article class="cv-entry">
+          <p class="cv-date">{entry.dates}</p>
+          <div>
+            <h3>{entry.institution}</h3>
+            <p class="cv-entry-role">{entry.degree}</p>
+            {entry.note && <p class="cv-note">{entry.note}</p>}
+          </div>
+        </article>
+      ))}
+    </section>
+
+    <section class="cv-section" aria-labelledby="cv-experience">
+      <h2 id="cv-experience">Research & teaching experience</h2>
+      {experience.map((entry) => (
+        <article class="cv-entry">
+          <p class="cv-date">{entry.dates}</p>
+          <div>
+            <h3>{entry.institution}</h3>
+            <p class="cv-entry-role">{entry.role}</p>
+            <ul class="cv-points">{entry.points.map((point) => <li>{point}</li>)}</ul>
+          </div>
+        </article>
+      ))}
+    </section>
+
+    <section class="cv-section" aria-labelledby="cv-publications">
+      <h2 id="cv-publications">Publications</h2>
+      <ol class="cv-publications">
+        <li>
+          <strong>Moore, J.M.</strong> &amp; Till, C.P. (2023).
+          “Approaches to assessing nutrient coupling in open ocean datasets.”
+          <i>IdeaFest: Interdisciplinary Journal of Creative Works and Research from Cal Poly Humboldt</i>, 7(1), Article 2.
+          <a href="https://digitalcommons.humboldt.edu/ideafest/vol7/iss1/2">Publisher record</a>
+        </li>
+        <li>
+          <strong>Moore, J.M.</strong> &amp; Zoellner, R.W. (2023).
+          “A DFT computational investigation of mono-sila-substituted DNA nucleobases and their hydrogen-bonded Watson-Crick dimers with the parent purines and pyrimidines.”
+          <i>Journal of Undergraduate Chemistry Research</i>, 22(4).
+          <a href="https://www.westmont.edu/node/27645">Journal issue</a>
+        </li>
+      </ol>
+    </section>
+
+    <section class="cv-section" aria-labelledby="cv-presentations">
+      <h2 id="cv-presentations">Presentations</h2>
+      <article class="cv-entry">
+        <p class="cv-date">November 2026</p>
+        <div>
+          <h3>5th Synthetic Biology of Natural Products Conference</h3>
+          <p class="cv-entry-role">Poster presentation · Planned</p>
+          <p class="cv-note">Playa del Carmen, Mexico</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="cv-section" aria-labelledby="cv-awards">
+      <h2 id="cv-awards">Honors & awards</h2>
+      <ul class="cv-awards">
+        {awards.map((award) => <li><span>{award.year}</span>{award.name}</li>)}
+      </ul>
+    </section>
+
+    <section class="cv-section" aria-labelledby="cv-skills">
+      <h2 id="cv-skills">Technical skills</h2>
+      <dl class="cv-skills">
+        {skillGroups.map((group) => <div><dt>{group.title}</dt><dd>{group.skills}</dd></div>)}
+      </dl>
+    </section>
+  </div>
+  <script>
+    document.querySelector<HTMLButtonElement>('#print-cv')?.addEventListener('click', () => window.print());
+  </script>
+</BaseLayout>
