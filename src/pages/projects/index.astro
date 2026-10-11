@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import SectionIntro from '../../components/SectionIntro.astro';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="Projects"
+  description="Selected ongoing and developing research projects by James Moore in microbial natural products, transcriptomics, and research data provenance."
+>
+  <div class="page-shell">
+    <SectionIntro
+      eyebrow="Projects"
+      title="Research in progress."
+      intro="A selection of current research questions and developing computational practices. Project summaries distinguish ongoing work from completed results; no unpublished findings are disclosed."
+    />
+    <div class="project-grid project-grid-page">
+      {projects.map((project) => <ProjectCard project={project} />)}
+    </div>
+    <p class="page-endnote">Project pages describe scope and direction only. Specific methods, data, and results are shared only when verified and approved for public release.</p>
+  </div>
+</BaseLayout>

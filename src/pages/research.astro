@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionIntro from '../components/SectionIntro.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="Research"
+  description="Research interests of James Moore: microbial natural products, biosynthetic gene clusters, synthetic biology, gene expression, and quantitative biology."
+>
+  <div class="page-shell">
+    <SectionIntro
+      eyebrow="Research"
+      title="Biological questions, multiple scales."
+      intro="My research interests center on microbial natural products and the methods used to investigate complex biological systems—from experimental conditions to gene-expression responses and reproducible analysis."
+    />
+    <section class="research-feature" aria-labelledby="natural-products">
+      <div class="research-feature-label">
+        <span class="feature-index">01</span>
+        <p class="eyebrow">Current research context</p>
+      </div>
+      <div class="research-feature-copy">
+        <h2 id="natural-products">Microbial natural products &amp; synthetic biology</h2>
+        <p>
+          I’m interested in how biosynthetic gene clusters can be investigated in
+          microbial systems. My current research context involves the palmerolide
+          biosynthetic gene cluster and heterologous expression in
+          <i>Aeromonas salmonicida</i> subsp. <i>pectinolytica</i> 34mel.
+        </p>
+        <p>
+          A central question is how culture conditions and induction relate to
+          biological responses. This work brings together microbial cultivation,
+          molecular biology, RT-qPCR, and gene-expression analysis. Results are not
+          presented here; ongoing research is described conservatively.
+        </p>
+        <a class="text-link" href="/projects/palmerolide-bgc/">Read the project overview <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+    <section class="research-topics" aria-labelledby="other-questions">
+      <div class="section-heading-row">
+        <div><p class="eyebrow">Connected interests</p><h2 id="other-questions">Questions I’m developing</h2></div>
+      </div>
+      <div class="topic-list">
+        <article><span class="topic-index">02</span><div><h3>Gene expression &amp; computational biology</h3><p>Using quantitative and computational approaches to understand expression data and support biological interpretation.</p></div><a href="/projects/transcriptomics/" aria-label="Read about transcriptomics and quantitative biology">↗</a></article>
+        <article><span class="topic-index">03</span><div><h3>Evidence, data &amp; reproducibility</h3><p>Developing better ways to connect scientific claims with their sources, analysis decisions, and resulting outputs.</p></div><a href="/projects/research-provenance/" aria-label="Read about reproducible research records and provenance">↗</a></article>
+        <article><span class="topic-index">04</span><div><h3>Plant biology &amp; broader biological systems</h3><p>My earlier training in botany remains part of a broad interest in how organisms respond to and shape their environments.</p></div><a href="/about/" aria-label="Read more about my scientific background">↗</a></article>
+      </div>
+    </section>
+    <section class="content-section compact-projects" aria-labelledby="research-projects">
+      <div class="section-heading-row">
+        <div><p class="eyebrow">In practice</p><h2 id="research-projects">Related projects</h2></div>
+      </div>
+      <div class="project-grid">
+        {projects.map((project) => <ProjectCard project={project} />)}
+      </div>
+    </section>
+  </div>
+</BaseLayout>

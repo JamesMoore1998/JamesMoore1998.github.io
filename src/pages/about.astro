@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionIntro from '../components/SectionIntro.astro';
+import { profile } from '../data/profile';
+---
+
+<BaseLayout
+  title="About"
+  description="About James Moore, a Biochemistry Ph.D. student whose scientific interests span botany, biochemistry, chemical engineering, and computational biology."
+>
+  <div class="page-shell">
+    <SectionIntro
+      eyebrow="About"
+      title="A scientist shaped by crossing boundaries."
+      intro="My scientific interests have grown across plant biology, biochemistry, chemical engineering, and computational approaches to biological questions."
+    />
+    <div class="prose-grid">
+      <div class="prose-main">
+        <p class="lead-paragraph">
+          I’m a {profile.role} at the {profile.institution}, working in the {profile.affiliation}.
+          I expect to complete my doctoral studies in {profile.expectedGraduation}.
+        </p>
+        <p>
+          My academic path has included undergraduate training in botany and biochemistry,
+          master’s-level training in chemical engineering, and current doctoral study in
+          biochemistry. Together, these perspectives shape how I approach biology: as
+          experimental systems with molecular detail, quantitative structure, and practical
+          constraints.
+        </p>
+        <p>
+          I’m particularly interested in microbial natural products and synthetic biology.
+          I value computational methods not as an end in themselves, but as a way to organize
+          evidence, ask more precise questions, and make biological interpretation more transparent.
+        </p>
+        <p>
+          Looking ahead, I’m interested in research scientist roles where experimental and
+          computational perspectives can inform one another, including opportunities at
+          national laboratories, academic research institutions, and biotechnology organizations.
+        </p>
+      </div>
+      <aside class="fact-panel">
+        <p class="eyebrow">At a glance</p>
+        <dl>
+          <div><dt>Current role</dt><dd>{profile.role}</dd></div>
+          <div><dt>Institution</dt><dd>{profile.institution}</dd></div>
+          <div><dt>Research group</dt><dd>{profile.affiliation}</dd></div>
+          <div><dt>Expected graduation</dt><dd>{profile.expectedGraduation}</dd></div>
+        </dl>
+        <p class="small-note">This is an independent personal portfolio and does not represent or imply institutional endorsement.</p>
+      </aside>
+    </div>
+    <section class="principles" aria-labelledby="principles-heading">
+      <div class="section-heading-row">
+        <div><p class="eyebrow">Scientific approach</p><h2 id="principles-heading">What guides my work</h2></div>
+      </div>
+      <div class="principle-grid">
+        <article><span class="principle-number">01</span><h3>Start with the biology</h3><p>Methods should serve the scientific question and the biological system being studied.</p></article>
+        <article><span class="principle-number">02</span><h3>Keep evidence traceable</h3><p>Interpretation is stronger when sources, assumptions, and analytical steps remain visible.</p></article>
+        <article><span class="principle-number">03</span><h3>Make work reproducible</h3><p>Clear records and repeatable workflows make it easier for others—and my future self—to follow the reasoning.</p></article>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

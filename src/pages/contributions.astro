@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionIntro from '../components/SectionIntro.astro';
+
+const contributions = (await getCollection('contributions'))
+  .sort((a, b) => b.data.year - a.data.year);
+---
+
+<BaseLayout
+  title="Publications & presentations"
+  description="Verified publications, conference abstracts, posters, talks, and other scientific contributions by James Moore."
+>
+  <div class="page-shell">
+    <SectionIntro
+      eyebrow="Scientific contributions"
+      title="Publications & presentations."
+      intro="Peer-reviewed work and scientific contributions, listed with verified authorship, venue, and status."
+    />
+    {contributions.length > 0 ? (
+      <ol class="contribution-list">
+        {contributions.map((item) => (
+          <li>
+            <div class="contribution-meta">
+              <span>{item.data.type}</span>
+              <span>{item.data.year}</span>
+              <span>{item.data.status}</span>
+            </div>
+            <h2>{item.data.title}</h2>
+            {item.data.authors.length > 0 && <p class="contribution-authors">{item.data.authors.join(', ')}</p>}
+            <p class="contribution-venue">{item.data.venue}</p>
+            <div class="contribution-links">
+              {item.data.doi && <a href={`https://doi.org/${item.data.doi}`} rel="external">DOI ↗</a>}
+              {item.data.url && <a href={item.data.url} rel="external">View online ↗</a>}
+              {item.data.pdf && <a href={item.data.pdf}>PDF ↓</a>}
+              {item.data.presentationDate && <span>Presented {item.data.presentationDate}</span>}
+            </div>
+          </li>
+        ))}
+      </ol>
+    ) : (
+      <p class="page-endnote">No verified publications or presentations are listed here yet.</p>
+    )}
+  </div>
+</BaseLayout>

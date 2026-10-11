@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionIntro from '../components/SectionIntro.astro';
+import { profile } from '../data/profile';
+---
+
+<BaseLayout
+  title="Contact"
+  description="Contact James Moore, Biochemistry Ph.D. student at the University of Nevada, Reno. Connect through his public GitHub profile."
+>
+  <div class="page-shell contact-page">
+    <SectionIntro
+      eyebrow="Contact"
+      title="Let’s talk science."
+      intro="For research, collaboration, or professional inquiries, the best place to connect is my public GitHub profile."
+    />
+    <a class="contact-link-panel" href={profile.github} rel="me">
+      <span class="contact-link-label">GitHub profile</span>
+      <span class="contact-link-value">github.com/JamesMoore1998</span>
+      <span class="contact-link-arrow" aria-hidden="true">↗</span>
+    </a>
+    <p class="contact-note">This independent portfolio is not an official University of Nevada, Reno or Murray Lab website.</p>
+  </div>
+</BaseLayout>

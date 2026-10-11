@@ -1,0 +1,48 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { profile } from '../../data/profile';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<BaseLayout title={project.data.title} description={project.data.summary} section="projects">
+  <article class="page-shell project-detail">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/projects/">Projects</a><span aria-hidden="true">/</span><span aria-current="page">{project.data.title}</span>
+    </nav>
+    <header class="project-detail-header">
+      <p class="eyebrow">{project.data.area}</p>
+      <h1>{project.data.title}</h1>
+      <p class="project-detail-lede">{project.data.summary}</p>
+      <p class="status status-large"><span class="status-dot" aria-hidden="true"></span>{project.data.status}</p>
+    </header>
+    <div class="project-detail-grid">
+      <div class="prose project-prose"><Content /></div>
+      <aside class="project-facts">
+        <p class="eyebrow">Project details</p>
+        <dl>
+          <div><dt>Research area</dt><dd>{project.data.area}</dd></div>
+          <div><dt>Status</dt><dd>{project.data.status}</dd></div>
+          {project.data.methods.length > 0 && (
+            <div><dt>Methods and concepts</dt><dd>{project.data.methods.join(' · ')}</dd></div>
+          )}
+          {project.data.repository && (
+            <div><dt>Code</dt><dd><a href={project.data.repository} rel="external">View repository ↗</a></dd></div>
+          )}
+        </dl>
+        <p class="small-note">Prepared for the professional portfolio of {profile.name}. No unpublished data or findings are included.</p>
+      </aside>
+    </div>
+    <a class="text-link back-link" href="/projects/">← All projects</a>
+  </article>
+</BaseLayout>

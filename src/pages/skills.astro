@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionIntro from '../components/SectionIntro.astro';
+
+const groups = [
+  {
+    title: 'Experimental biology',
+    status: 'Current research context',
+    skills: ['Microbial cultivation', 'Molecular biology', 'RT-qPCR', 'Gene-expression analysis', 'Biosynthetic gene cluster research'],
+  },
+  {
+    title: 'Computational biology',
+    status: 'Applied and developing',
+    skills: ['RNA-seq analysis', 'Biological data processing', 'Data visualization', 'Reproducible analysis workflows'],
+  },
+  {
+    title: 'Programming & data',
+    status: 'Tools used and developing',
+    skills: ['R', 'Python', 'SQL / DuckDB', 'Git / GitHub'],
+  },
+  {
+    title: 'Quantitative methods',
+    status: 'Applied and currently learning',
+    skills: ['Experimental design', 'Statistical inference', 'Linear algebra', 'Multivariate analysis', 'Data modeling'],
+  },
+  {
+    title: 'Research practice',
+    status: 'Ongoing practice',
+    skills: ['Scientific documentation', 'Research data management', 'Literature analysis', 'Reproducibility', 'Scientific communication'],
+  },
+];
+---
+
+<BaseLayout
+  title="Skills"
+  description="Scientific methods and computational skills James Moore applies and continues to develop across experimental biology, bioinformatics, quantitative analysis, and research practice."
+>
+  <div class="page-shell">
+    <SectionIntro
+      eyebrow="Skills & methods"
+      title="Tools in service of the question."
+      intro="My work crosses laboratory research and computational reasoning. The labels below provide context rather than ratings: methods in current research, developing tools, and quantitative topics I am continuing to learn."
+    />
+    <div class="skill-groups">
+      {groups.map((group, index) => (
+        <section class="skill-row" aria-labelledby={`skill-group-${index}`}>
+          <div class="skill-group-heading">
+            <span class="principle-number">{String(index + 1).padStart(2, '0')}</span>
+            <h2 id={`skill-group-${index}`}>{group.title}</h2>
+            <p>{group.status}</p>
+          </div>
+          <ul class="skill-list">
+            {group.skills.map((skill) => <li>{skill}</li>)}
+          </ul>
+        </section>
+      ))}
+    </div>
+    <p class="page-endnote">These categories reflect the research context and interests described in this portfolio; they are not a claim of equal depth or independent expertise in every method.</p>
+  </div>
+</BaseLayout>

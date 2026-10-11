@@ -1,0 +1,38 @@
+---
+import { navigation, profile } from '../data/profile';
+
+interface Props {
+  currentPath: string;
+  section?: string;
+}
+
+const { currentPath, section } = Astro.props;
+const isCurrent = (href: string) =>
+  currentPath === href || (section === 'projects' && href === '/projects/');
+---
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="/" aria-label={`${profile.name}, home`}>
+      <span class="wordmark-mark" aria-hidden="true">JM</span>
+      <span class="wordmark-name">{profile.name}</span>
+    </a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      {navigation.map((item) => (
+        <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+          {item.label}
+        </a>
+      ))}
+    </nav>
+    <details class="mobile-nav">
+      <summary aria-label="Open navigation menu">Menu</summary>
+      <nav aria-label="Mobile navigation">
+        {navigation.map((item) => (
+          <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+            {item.label}
+          </a>
+        ))}
+      </nav>
+    </details>
+  </div>
+</header>

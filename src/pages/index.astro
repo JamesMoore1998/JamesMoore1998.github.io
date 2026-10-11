@@ -1,0 +1,83 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { profile } from '../data/profile';
+
+const projects = (await getCollection('projects'))
+  .filter((project) => project.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="Home"
+  description="James Moore is a Biochemistry Ph.D. student at the University of Nevada, Reno, exploring microbial natural products, synthetic biology, and computational biology."
+>
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="eyebrow-line"></span>Scientist · Reno, Nevada</p>
+      <h1>Biology is most interesting <em>between</em> disciplines.</h1>
+      <p class="hero-lede">
+        I’m {profile.name}, a {profile.role} at the {profile.institution}, working in the {profile.affiliation}.
+        My interests bring experimental biology into conversation with quantitative and computational approaches.
+      </p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="/research/">Explore my research <span aria-hidden="true">↗</span></a>
+        <a class="button button-secondary" href="/contact/">Get in touch</a>
+      </div>
+      <div class="hero-meta">
+        <span>Biochemistry</span><span aria-hidden="true">/</span>
+        <span>Synthetic biology</span><span aria-hidden="true">/</span>
+        <span>Computational biology</span>
+      </div>
+    </div>
+    <aside class="hero-aside" aria-label="Research perspective">
+      <div class="orbit-art" aria-hidden="true">
+        <span class="orbit orbit-one"></span>
+        <span class="orbit orbit-two"></span>
+        <span class="orbit orbit-three"></span>
+        <span class="orbit-core"></span>
+        <span class="orbit-node node-one"></span>
+        <span class="orbit-node node-two"></span>
+        <span class="orbit-node node-three"></span>
+      </div>
+      <p class="aside-index">A research perspective</p>
+      <p class="aside-statement">From molecular questions<br />to reproducible evidence.</p>
+      <p class="aside-caption">Connecting experiments, biological context, and careful analysis.</p>
+    </aside>
+  </section>
+
+  <section class="section-band" aria-labelledby="approach-heading">
+    <div class="section-band-label">
+      <p class="eyebrow">How I work</p>
+      <h2 id="approach-heading">A connected view of biology.</h2>
+    </div>
+    <p>
+      Questions about gene expression or microbial metabolism rarely stop at one scale.
+      I’m interested in combining laboratory investigation with data analysis to build
+      a more complete, and more reproducible, picture of biological systems.
+    </p>
+    <a class="text-link" href="/about/">More about my approach <span aria-hidden="true">→</span></a>
+  </section>
+
+  <section class="content-section featured-section" aria-labelledby="selected-work">
+    <div class="section-heading-row">
+      <div>
+        <p class="eyebrow">Selected work</p>
+        <h2 id="selected-work">Questions in progress</h2>
+      </div>
+      <a class="text-link" href="/projects/">All projects <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="project-grid">
+      {projects.map((project) => <ProjectCard project={project} />)}
+    </div>
+  </section>
+
+  <section class="contact-strip">
+    <div>
+      <p class="eyebrow">Continue the conversation</p>
+      <h2>Good science is a collaborative effort.</h2>
+    </div>
+    <a class="button button-light" href="/contact/">Connect with me <span aria-hidden="true">↗</span></a>
+  </section>
+</BaseLayout>
